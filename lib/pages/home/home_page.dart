@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-
-import '../../widgets/app_input.dart';
+import 'package:psico_form/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: _Body()),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("PsicoForm", style: TextStyle(color: Colors.white)),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: const SafeArea(
+        child: _Body(),
+      ),
     );
   }
 }
@@ -22,7 +28,11 @@ class _Body extends StatelessWidget {
       padding: EdgeInsets.all(24.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [_PatientInfo(), SizedBox(height: 12.0), _ItemsCheckBoxes()],
+        children: [
+          _PatientInfo(),
+          SizedBox(height: 12.0),
+          _ItemsCheckBoxes(),
+        ],
       ),
     );
   }
@@ -41,10 +51,25 @@ class _PatientInfo extends StatelessWidget {
           onChanged: (p0) => {},
         ),
         const SizedBox(height: 12.0),
-        PsicoInput(
-          labelText: "Data",
-          hintText: "Escolha data...",
-          onChanged: (p0) => {},
+        Row(
+          children: [
+            Expanded(
+              flex: 8,
+              child: PsicoInput(
+                labelText: "Data",
+                hintText: "Escolha data...",
+                onChanged: (p0) => {},
+              ),
+            ),
+            const SizedBox(width: 8.0),
+            Expanded(
+              flex: 4,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text('Escolha Data'),
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 12.0),
         PsicoInput(
@@ -67,6 +92,7 @@ class _ItemsCheckBoxes extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text("Assinale, a seguir, os itens que se aplicam a você (presente e passado):"),
+        PsicoCheckbox(),
       ],
     );
   }
