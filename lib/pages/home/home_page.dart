@@ -24,16 +24,16 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(24.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          _PatientInfo(),
-          SizedBox(height: 12.0),
-          _ItemsCheckBoxes(),
-        ],
-      ),
+    return ListView(
+      shrinkWrap: true,
+      padding: const EdgeInsets.all(24.0),
+      children: const [
+        _PatientInfo(),
+        SizedBox(height: 12.0),
+        _ItemsCheckBoxes(),
+        SizedBox(height: 12.0),
+        _MedicationsCurrentlyTaking(),
+      ],
     );
   }
 }
@@ -91,8 +91,101 @@ class _ItemsCheckBoxes extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text("Assinale, a seguir, os itens que se aplicam a você (presente e passado):"),
-        PsicoCheckbox(),
+        Text(
+          "Assinale, a seguir, os itens que se aplicam a você (presente e passado):",
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        Wrap(
+          direction: Axis.horizontal,
+          children: <Widget>[
+            PsicoCheckbox(
+              value: true,
+              label: 'Epilepsia',
+              onChanged: (bool? value) => print("Epilepsia: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Dores nos olhos/problemas visuais',
+              onChanged: (bool? value) => print("Dores/Problemas Visuais: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Uso de anfetaminas',
+              onChanged: (bool? value) => print("Anfetaminas: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Dores de ouvido/perda de audição',
+              onChanged: (bool? value) => print("Dores ouvido: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Danos cerebrais',
+              onChanged: (bool? value) => print("Danos cerebrais: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Uso de cocaína',
+              onChanged: (bool? value) => print("Uso cocaína: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Problemas cardíacos',
+              onChanged: (bool? value) => print("Prob cardíacos: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Problemas neurológicos',
+              onChanged: (bool? value) => print("Prob cardíacos: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Uso de benzodiazepínicos (Diazepam, Valium, etc...)',
+              onChanged: (bool? value) => print("Prob cardíacos: $value"),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _MedicationsCurrentlyTaking extends StatelessWidget {
+  const _MedicationsCurrentlyTaking();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        PsicoInput(
+          labelText: "Relacione os medicamentos que você está tomando atualmente:",
+          hintText: "Escreva aqui...",
+          onChanged: (p0) => {},
+        ),
+        const SizedBox(height: 12.0),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("Se você é mulher, você está grávida?"),
+            PsicoCheckbox(
+              value: true,
+              label: 'Sim',
+              onChanged: (bool? value) => print("Grávida Sim: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Não',
+              onChanged: (bool? value) => print("Grávida Não: $value"),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12.0),
+        PsicoInput(
+          labelText: "Caso afirmativo, quantos meses?",
+          hintText: "Escreva aqui...",
+          onChanged: (p0) => {},
+        ),
       ],
     );
   }
