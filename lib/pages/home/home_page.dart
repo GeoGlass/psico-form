@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psico_form/utils/utils.dart';
 import 'package:psico_form/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -157,6 +158,7 @@ class _MedicationsCurrentlyTaking extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PsicoInput(
           labelText: "Relacione os medicamentos que você está tomando atualmente:",
@@ -164,27 +166,63 @@ class _MedicationsCurrentlyTaking extends StatelessWidget {
           onChanged: (p0) => {},
         ),
         const SizedBox(height: 12.0),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text("Se você é mulher, você está grávida?"),
-            PsicoCheckbox(
-              value: true,
-              label: 'Sim',
-              onChanged: (bool? value) => print("Grávida Sim: $value"),
-            ),
-            PsicoCheckbox(
-              value: true,
-              label: 'Não',
-              onChanged: (bool? value) => print("Grávida Não: $value"),
-            ),
-          ],
+        ResponsiveWidget(
+          extraLargeScreen: Wrap(
+            direction: Axis.horizontal,
+            crossAxisAlignment: WrapCrossAlignment.start,
+            children: [
+              const Text("Se você é mulher, você está grávida?"),
+              PsicoCheckbox(
+                value: true,
+                label: 'Sim',
+                onChanged: (bool? value) => print("Grávida Sim: $value"),
+              ),
+              PsicoCheckbox(
+                value: true,
+                label: 'Não',
+                onChanged: (bool? value) => print("Grávida Não: $value"),
+              ),
+            ],
+          ),
+          smallScreen: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Se você é mulher, você está grávida?"),
+              PsicoCheckbox(
+                value: true,
+                label: 'Sim',
+                onChanged: (bool? value) => print("Grávida Sim: $value"),
+              ),
+              PsicoCheckbox(
+                value: true,
+                label: 'Não',
+                onChanged: (bool? value) => print("Grávida Não: $value"),
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: 12.0),
         PsicoInput(
           labelText: "Caso afirmativo, quantos meses?",
           hintText: "Escreva aqui...",
           onChanged: (p0) => {},
+        ),
+      ],
+    );
+  }
+}
+
+class PacientHistory extends StatelessWidget {
+  const PacientHistory({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          "Você possui histórico de:",
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ],
     );
