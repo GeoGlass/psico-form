@@ -19,31 +19,39 @@ class PsicoCheckbox extends StatefulWidget {
 }
 
 class _CheckboxExampleState extends State<PsicoCheckbox> {
-  bool _isChecked = false;
+  final ValueNotifier<bool> _isChecked = ValueNotifier<bool>(false);
 
   @override
   void initState() {
     super.initState();
-    _isChecked = widget._value;
+    _isChecked.value = widget._value;
+  }
+
+  @override
+  void dispose() {
+    _isChecked.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("RENDER ${widget._label}");
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Checkbox(
-          //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          //visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-          value: _isChecked,
-          onChanged: (bool? value) {
-            setState(() {
-              _isChecked = value!;
-              widget._onChanged(_isChecked);
-            });
-          },
+        ValueListenableBuilder<bool>(
+          valueListenable: _isChecked,
+          builder: (context, isFocus, _) => Checkbox(
+            //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            //visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+            value: _isChecked.value,
+            onChanged: (bool? value) {
+              _isChecked.value = value!;
+              widget._onChanged(_isChecked.value);
+            },
+          ),
         ),
         Flexible(
           child: Text(widget._label),

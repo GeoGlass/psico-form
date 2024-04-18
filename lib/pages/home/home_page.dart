@@ -26,7 +26,6 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      shrinkWrap: true,
       padding: const EdgeInsets.all(24.0),
       children: const [
         _PatientInfo(),
@@ -34,6 +33,8 @@ class _Body extends StatelessWidget {
         _ItemsCheckBoxes(),
         SizedBox(height: 12.0),
         _MedicationsCurrentlyTaking(),
+        SizedBox(height: 12.0),
+        _PacientHistory(),
       ],
     );
   }
@@ -212,8 +213,8 @@ class _MedicationsCurrentlyTaking extends StatelessWidget {
   }
 }
 
-class PacientHistory extends StatelessWidget {
-  const PacientHistory({super.key});
+class _PacientHistory extends StatelessWidget {
+  const _PacientHistory();
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +223,7 @@ class PacientHistory extends StatelessWidget {
       children: [
         Text(
           "Você possui histórico de:",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge?.apply(fontWeightDelta: 1),
         ),
       ],
     );
