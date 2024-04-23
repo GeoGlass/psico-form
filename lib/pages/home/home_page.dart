@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:psico_form/utils/utils.dart';
 import 'package:psico_form/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,17 +24,20 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(24.0),
-      children: const [
-        _PatientInfo(),
-        SizedBox(height: 12.0),
-        _ItemsCheckBoxes(),
-        SizedBox(height: 12.0),
-        _MedicationsCurrentlyTaking(),
-        SizedBox(height: 12.0),
-        _PacientHistory(),
-      ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: ListView(
+        padding: const EdgeInsets.all(24.0),
+        children: const [
+          _PatientInfo(),
+          SizedBox(height: 12.0),
+          _ItemsCheckBoxes(),
+          SizedBox(height: 12.0),
+          _MedicationsCurrentlyTaking(),
+          SizedBox(height: 12.0),
+          _PacientHistory(),
+        ],
+      ),
     );
   }
 }
@@ -167,40 +169,22 @@ class _MedicationsCurrentlyTaking extends StatelessWidget {
           onChanged: (p0) => {},
         ),
         const SizedBox(height: 12.0),
-        ResponsiveWidget(
-          extraLargeScreen: Wrap(
-            direction: Axis.horizontal,
-            crossAxisAlignment: WrapCrossAlignment.start,
-            children: [
-              const Text("Se você é mulher, você está grávida?"),
-              PsicoCheckbox(
-                value: true,
-                label: 'Sim',
-                onChanged: (bool? value) => print("Grávida Sim: $value"),
-              ),
-              PsicoCheckbox(
-                value: true,
-                label: 'Não',
-                onChanged: (bool? value) => print("Grávida Não: $value"),
-              ),
-            ],
-          ),
-          smallScreen: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Se você é mulher, você está grávida?"),
-              PsicoCheckbox(
-                value: true,
-                label: 'Sim',
-                onChanged: (bool? value) => print("Grávida Sim: $value"),
-              ),
-              PsicoCheckbox(
-                value: true,
-                label: 'Não',
-                onChanged: (bool? value) => print("Grávida Não: $value"),
-              ),
-            ],
-          ),
+        Wrap(
+          direction: Axis.horizontal,
+          crossAxisAlignment: WrapCrossAlignment.start,
+          children: [
+            const Text("Se você é mulher, você está grávida?"),
+            PsicoCheckbox(
+              value: true,
+              label: 'Sim',
+              onChanged: (bool? value) => print("Grávida Sim: $value"),
+            ),
+            PsicoCheckbox(
+              value: true,
+              label: 'Não',
+              onChanged: (bool? value) => print("Grávida Não: $value"),
+            ),
+          ],
         ),
         const SizedBox(height: 12.0),
         PsicoInput(
