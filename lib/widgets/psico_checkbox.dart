@@ -4,14 +4,17 @@ class PsicoCheckbox extends StatefulWidget {
   const PsicoCheckbox({
     super.key,
     bool? value,
-    required String label,
+    String? leftlabel,
+    String? rightlabel,
     required Function(bool? value) onChanged,
   })  : _value = value ?? false,
-        _label = label,
+        _leftLabel = leftlabel,
+        _rightLabel = rightlabel,
         _onChanged = onChanged;
 
   final bool _value;
-  final String _label;
+  final String? _leftLabel;
+  final String? _rightLabel;
   final Function(bool? value) _onChanged;
 
   @override
@@ -35,12 +38,13 @@ class _CheckboxExampleState extends State<PsicoCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    print("RENDER ${widget._label}");
+    print("RENDER ${widget._leftLabel}${widget._rightLabel}");
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        widget._leftLabel != null ? Flexible(child: Text(widget._leftLabel!)) : const SizedBox(),
         ValueListenableBuilder<bool>(
           valueListenable: _isChecked,
           builder: (context, isFocus, _) => Checkbox(
@@ -53,9 +57,7 @@ class _CheckboxExampleState extends State<PsicoCheckbox> {
             },
           ),
         ),
-        Flexible(
-          child: Text(widget._label),
-        ),
+        widget._rightLabel != null ? Flexible(child: Text(widget._rightLabel!)) : const SizedBox(),
       ],
     );
   }
