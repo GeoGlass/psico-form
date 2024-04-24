@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:psico_form/widgets/widgets.dart';
+
+import 'forms/forms.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -24,76 +25,49 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(24.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          _PatientInfo(),
-          SizedBox(height: 12.0),
-          _ItemsCheckBoxes(),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: ListView(
+        padding: const EdgeInsets.all(24.0),
+        children: const [
+          PatientInfo(),
+          _Separator(),
+          PacientItems(),
+          _Separator(),
+          PacientMedicines(),
+          _Separator(),
+          PacientHistory(),
+          _Separator(),
+          PacientHealth(),
+          _Separator(),
+          _SubmitButton(),
         ],
       ),
     );
   }
 }
 
-class _PatientInfo extends StatelessWidget {
-  const _PatientInfo();
+class _Separator extends StatelessWidget {
+  const _Separator();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        PsicoInput(
-          labelText: "Nome do paciente",
-          hintText: "Digite o nome do Paciente",
-          onChanged: (p0) => {},
-        ),
-        const SizedBox(height: 12.0),
-        Row(
-          children: [
-            Expanded(
-              flex: 8,
-              child: PsicoInput(
-                labelText: "Data",
-                hintText: "Escolha data...",
-                onChanged: (p0) => {},
-              ),
-            ),
-            const SizedBox(width: 8.0),
-            Expanded(
-              flex: 4,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('Escolha Data'),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12.0),
-        PsicoInput(
-          labelText: "Quais os items que lhe trazem à terapia?",
-          hintText: "Escreva aqui...",
-          onChanged: (p0) => {},
-        ),
-      ],
+    return const Divider(
+      color: Colors.deepPurple,
+      thickness: 3.0,
+      height: 80.0,
     );
   }
 }
 
-class _ItemsCheckBoxes extends StatelessWidget {
-  const _ItemsCheckBoxes();
+class _SubmitButton extends StatelessWidget {
+  const _SubmitButton();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text("Assinale, a seguir, os itens que se aplicam a você (presente e passado):"),
-        PsicoCheckbox(),
-      ],
+    return ElevatedButton(
+      onPressed: () {},
+      child: const Text('Enviar'),
     );
   }
 }

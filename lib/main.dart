@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             side: MaterialStateBorderSide.resolveWith(
               (Set<MaterialState> states) {
                 if (states.contains(MaterialState.selected)) return const BorderSide(color: Colors.deepPurple);
-                return BorderSide(color: Colors.purple.shade200);
+                return const BorderSide(color: Colors.deepPurple);
               },
             ),
             fillColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
