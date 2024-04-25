@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'forms/forms.dart';
+import 'psico_form_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -65,9 +67,11 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: const Text('Enviar'),
+    return Consumer<PsicoFormProvider>(
+      builder: (context, provider, _) => ElevatedButton(
+        onPressed: () {},
+        child: const Text('Enviar'),
+      ),
     );
   }
 }

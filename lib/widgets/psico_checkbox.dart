@@ -38,7 +38,6 @@ class _CheckboxExampleState extends State<PsicoCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    print("RENDER ${widget._leftLabel}${widget._rightLabel}");
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
