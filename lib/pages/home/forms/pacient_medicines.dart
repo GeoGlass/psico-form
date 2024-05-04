@@ -21,19 +21,19 @@ class PacientMedicines extends StatelessWidget {
           PsicoInput(
             labelText: "Relacione os medicamentos que você está tomando atualmente:",
             hintText: "Escreva aqui...",
-            onChanged: (p0) => {},
+            onChanged: (String med) => provider.setMedicamentos(med),
           ),
           const SizedBox(height: 12.0),
           PsicoCheckbox(
             value: false,
             leftlabel: 'Se você é mulher, você está grávida?',
-            onChanged: (bool? value) => print("Grávida Sim: $value"),
+            onChanged: (bool? value) => provider.setGravida(value ?? false),
           ),
           const SizedBox(height: 12.0),
           PsicoInput(
-            labelText: "Caso afirmativo, quantos meses?",
+            labelText: "Caso afirmativo, quantos meses?", //quantas semanas?
             hintText: "Escreva aqui...",
-            onChanged: (p0) => {},
+            onChanged: (String meses) => provider.setMesesGravidez(meses),
           ),
         ],
       ),

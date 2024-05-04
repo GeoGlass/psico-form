@@ -69,8 +69,10 @@ class _SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PsicoFormProvider>(
       builder: (context, provider, _) => ElevatedButton(
-        onPressed: () {},
         child: const Text('Enviar'),
+        onPressed: () {
+          provider.submitBtn();
+        },
       ),
     );
   }

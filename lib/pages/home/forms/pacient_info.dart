@@ -21,7 +21,7 @@ class PatientInfo extends StatelessWidget {
           PsicoInput(
             labelText: "Nome do paciente",
             hintText: "Digite o nome do Paciente",
-            onChanged: (p0) => {},
+            onChanged: (String name) => provider.setPacienteNome(name),
           ),
           const SizedBox(height: 12.0),
           Row(
@@ -31,7 +31,7 @@ class PatientInfo extends StatelessWidget {
                 child: PsicoInput(
                   labelText: "Data",
                   hintText: "Escolha data...",
-                  onChanged: (p0) => {},
+                  onChanged: (String date) => provider.setData(date),
                 ),
               ),
               const SizedBox(width: 8.0),
@@ -48,7 +48,7 @@ class PatientInfo extends StatelessWidget {
           PsicoInput(
             labelText: "Quais os items que lhe trazem à terapia?",
             hintText: "Escreva aqui...",
-            onChanged: (p0) => {},
+            onChanged: (String items) => provider.setTerapiaItens(items),
           ),
         ],
       ),
